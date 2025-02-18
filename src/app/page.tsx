@@ -9,10 +9,11 @@ export default async function Home() {
   const topRatedMovies= await getTopRated('movie')
   const topRatedSeries= await getTopRated('tv')
   return (
-    <main>
+    <main> 
+      
       <MovieSliderWrapper/>
 
-      <div className="flex flex-col space-y-10">
+      <div className="flex flex-col space-y-10 mb-10" >
 
        <MovieCarousel title="Top Rated Movies" movies={topRatedMovies}/>
        <MovieCarousel title="Top Rated Series" movies={topRatedSeries}/>

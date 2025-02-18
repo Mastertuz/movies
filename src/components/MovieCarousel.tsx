@@ -16,8 +16,8 @@ type Props={
   isVertical?:boolean
 }
 function MovieCarousel({title,movies,isVertical}:Props) {
-  const [emblaRef] = useEmblaCarousel()
-  return (
+    
+    return (
     <div className="">
      <h2 className="text-2xl mb-8">{title}</h2>
       
@@ -25,12 +25,13 @@ function MovieCarousel({title,movies,isVertical}:Props) {
       opts={{
         align: "start",
       }}
+ 
       className="w-full"
     >
       <CarouselContent>
         {movies.map((movie)=>(
-          <CarouselItem className="md:basis-1/4 sm:basis-1/3 lg:basis-1/5 pl-6 ">
-            <MovieCard movie={movie} key={movie.id}/>
+          <CarouselItem key={movie.id} className="md:basis-1/4 sm:basis-1/3 lg:basis-1/5 pl-6 ">
+            <MovieCard movie={movie} />
           </CarouselItem>
              ))}
       </CarouselContent>

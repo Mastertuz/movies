@@ -10,12 +10,12 @@ function MovieCard({movie}:{movie:Movie}) {
 
         </p>
         <Image
-        alt={movie.title}
+        alt={movie.title||'movie img'}
         src={getImagePath(movie.backdrop_path || movie.poster_path)  }
         width={1920}
         height={1080}
         key={movie.id}
-        className="w-fit h-56"
+        className="w-fit h-56 object-cover"
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ import SearchInput from "./SearchInput"
 
 function Header() {
   return (
-    <header className="w-full  sticky py-2 top-0 z-50 flex justify-between items-center">
+    <header className="w-full  sticky py-2 top-0 mb-6 z-50 flex justify-between items-center">
       <Link href={'/'}>
         <Image
           src="/logo.svg"
