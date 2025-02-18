@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Link from "next/link"
 
 type Props={
   title:string,
@@ -28,10 +29,12 @@ function MovieCarousel({title,movies,isVertical}:Props) {
  
       className="w-full"
     >
-      <CarouselContent>
+      <CarouselContent className="my-4">
         {movies.map((movie)=>(
-          <CarouselItem key={movie.id} className="md:basis-1/4 sm:basis-1/3 lg:basis-1/5 pl-6 ">
+          <CarouselItem key={movie.id} className="md:basis-1/4  sm:basis-1/3 lg:basis-1/5 pl-6 ">
+            <Link href={`/${movie.id}`}>
             <MovieCard movie={movie} />
+            </Link>
           </CarouselItem>
              ))}
       </CarouselContent>
