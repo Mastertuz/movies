@@ -25,10 +25,10 @@ function Header() {
             Series</Link>
           </li>
           <li>
-            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/movie'}>Movies</Link>
+            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/movies'}>Movies</Link>
           </li>
           <li>
-            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/search/abc'}>Watchlist</Link>
+            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/watchlist'}>Watchlist</Link>
           </li>
         </ul>
       </nav>

@@ -4,7 +4,8 @@ import getImagePath from "@/lib/getImagePath"
 
 function MovieCard({movie}:{movie:Movie}) {
   return (
-    <div className="rounded-2xl flex-shrink-0 transform hover:scale-100 transition duration-200 ease-out hover:drop-shadow-lg">
+    <div className="cursor-pointer rounded-2xl flex-shrink-0 transform hover:scale-100 transition duration-200 ease-out hover:drop-shadow-lg">
+
       <div className="rounded-2xl">
         <p>
 

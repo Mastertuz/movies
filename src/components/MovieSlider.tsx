@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Link from 'next/link';
 
 function MovieSlider({ movies }: { movies: Movie[] }) {
   return (
@@ -28,6 +29,7 @@ function MovieSlider({ movies }: { movies: Movie[] }) {
         {
           movies.map((movie) => (
             <div key={movie.id} className='flex-[0_0_100%] min-w-0 pl-4'>
+              <Link href={`${movie.id}`}>
               <Image
                 className='rounded-3xl max-h-[600px] object-cover '
                 key={movie.id}
@@ -36,6 +38,7 @@ function MovieSlider({ movies }: { movies: Movie[] }) {
                 height={1080}
                 alt={movie.title||'movie slider img'}
               />
+            </Link>
             </div>
           ))
         }
