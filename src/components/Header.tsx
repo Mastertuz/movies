@@ -3,7 +3,13 @@ import ModeToggle from "./ModeToggle"
 import Image from "next/image"
 import { HomeIcon, SearchIcon, UserIcon } from "lucide-react"
 import SearchInput from "./SearchInput"
-
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 function Header() {
   return (
     <header className="w-full bg-[#0a0a0a]  sticky py-2 top-0 mb-6 z-50 flex justify-between items-center">
@@ -35,7 +41,16 @@ function Header() {
       
       <div className="flex items-center space-x-4">
       <SearchInput/>
-      <UserIcon className="cursor-pointer"/>
+
+{/* 
+      <UserIcon className="cursor-pointer"/> */}
+     <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+
       </div>
       
 

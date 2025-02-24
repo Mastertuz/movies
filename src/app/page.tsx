@@ -15,11 +15,11 @@ export default async function Home() {
 
       <div className="flex flex-col space-y-10 mb-10" >
 
-       <MovieCarousel title="Top Rated Movies" movies={topRatedMovies}/>
-       <MovieCarousel title="Top Rated Series" movies={topRatedSeries}/>
-       <MovieCarousel title="Trending Series and Movies" movies={trending}/>
-       <MovieCarousel title="Upcoming Movies" movies={upcomingMovies}/>
-       <MovieCarousel title="Upcoming Series" movies={upcomingSeries}/>
+       <MovieCarousel title="Top Rated Movies" movies={topRatedMovies} media_type='movie'/>
+       <MovieCarousel title="Top Rated Series" movies={topRatedSeries} media_type='tv'/>
+       <MovieCarousel title="Trending Series and Movies" movies={trending} />
+       <MovieCarousel title="Upcoming Movies" movies={upcomingMovies} media_type='movie'/>
+       <MovieCarousel title="Upcoming Series" movies={upcomingSeries} media_type='tv'/>
 
       </div>
     </main>

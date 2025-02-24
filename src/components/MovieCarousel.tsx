@@ -15,9 +15,10 @@ import Link from "next/link"
 type Props = {
   title: string,
   movies: Movie[],
+  media_type?:string,
   isVertical?: boolean
 }
-function MovieCarousel({ title, movies, isVertical }: Props) {
+function MovieCarousel({ title, movies, isVertical ,media_type}: Props) {
 
   return (
     <div className="">
@@ -36,9 +37,7 @@ function MovieCarousel({ title, movies, isVertical }: Props) {
         <CarouselContent className="my-4">
           {movies?.map((movie) => (
             <CarouselItem key={movie.id} className="md:basis-1/4  sm:basis-1/3 lg:basis-1/5 pl-6 ">
-              <Link href={`/${movie.id}`}>
-                <MovieCard movie={movie} />
-              </Link>
+                <MovieCard movie={movie} item_type={media_type} />
             </CarouselItem>
           ))}
         </CarouselContent>
