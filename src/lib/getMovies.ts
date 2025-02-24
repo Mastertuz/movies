@@ -1,5 +1,5 @@
-import { SearchResults } from "../../typings"
-
+import { Details, SearchResults } from "../../typings"
+import axios from 'axios'
 async function fetchFromTMDB(url: URL, cacheTime?: number) {
   url.searchParams.set("include_adult", "false");
   url.searchParams.set("include_video", "false");
@@ -78,4 +78,20 @@ export async function getSearchedResults(term: string) {
   const data = (await response.json()) as SearchResults;
 
   return data.results;
+}
+
+export async function getDetails(media_type:string,id:string) {
+  const options: RequestInit = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.API_KEY}`,
+    },
+    next: {
+      revalidate: 60 * 60 * 24,
+    },
+  };
+
+  const res = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=38fd1b5b8c1fdcae4a3d50b376b85bac`);
+  return res?.data;
 }

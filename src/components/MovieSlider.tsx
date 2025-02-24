@@ -29,7 +29,7 @@ function MovieSlider({ movies }: { movies: Movie[] }) {
         {
           movies.map((movie) => (
             <div key={movie.id} className='flex-[0_0_100%] min-w-0 pl-4'>
-              <Link href={`${movie.id}`}>
+              <Link href={`${movie.media_type}/${movie.id}`}>
               <Image
                 className='rounded-3xl max-h-[600px] object-cover '
                 key={movie.id}
