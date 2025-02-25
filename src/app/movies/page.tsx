@@ -9,7 +9,7 @@ async function Moviespage() {
 
       <div className="grid grid-cols-4 gap-4">
         {movies.map((movie)=>(
-          <MovieCard key={movie.id} movie={movie}/>
+          <MovieCard key={movie.id} item_type="movie" movie={movie}/>
         ))}
       </div>
     </div>
