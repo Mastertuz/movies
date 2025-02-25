@@ -30,7 +30,7 @@ export type SearchResults = {
 export type Details = {
   adult: boolean,
   backdrop_path: string,
-  name?:string,
+  name?: string,
   belongs_to_collection: {
     id: 230,
     name: string,
@@ -82,3 +82,36 @@ export type Details = {
   vote_count: number
 
 }
+
+export type Cast = {
+  adult: false,
+  gender: number,
+  id: number,
+  known_for_department: string,
+  name: string,
+  original_name: string,
+  popularity: number,
+  profile_path: string,
+  cast_id: number,
+  character: string,
+  credit_id: string,
+  order: 0
+}
+export type Crew = {
+  adult: false,
+  gender: number,
+  id: number,
+  known_for_department: string,
+  name: string,
+  original_name: string,
+  popularity: number,
+  profile_path: string,
+  credit_id: number,
+  department: string,
+  job: string
+}
+export type Credits = {
+  id: number,
+  cast: Cast[],
+  crew: Crew[]
+} 

@@ -1,12 +1,22 @@
 "use client";
 import getImagePath from '@/lib/getImagePath';
 import Image from 'next/image';
-import { Details } from '../../typings';
+import { Credits, Details } from '../../typings';
 import CircularProgress from './CircleProgress';
 import { Button } from './ui/button';
 import { PlusIcon } from 'lucide-react';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
+import MovieCard from "./MovieCard"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 type Props = {
-  details: Details
+  details: Details,
+  credits:Credits
 }
 
 const resolveRatingColor= (rating:number)=>{
@@ -19,10 +29,9 @@ const resolveRatingColor= (rating:number)=>{
   }
 }
 
-function DetailspageClient({ details }: Props) {
-console.log(getImagePath(getImagePath(details.backdrop_path)))
+ function DetailspageClient({ details ,credits}: Props) {
   return (
-    <div className={`my-10`} style={{ backgroundImage: `url(${getImagePath(details.backdrop_path)})` }}>
+    <div className='my-10'>
       <div className='flex gap-10   items-center'>
         <Image
           src={getImagePath(details.poster_path)}
@@ -53,6 +62,35 @@ console.log(getImagePath(getImagePath(details.backdrop_path)))
             ))}
           </div>
         </div>
+      </div>
+
+      <div>
+        <h4>Cast</h4>
+        <Carousel
+        opts={{
+          align: "start",
+          dragFree: true,
+        }}
+        plugins={[
+          WheelGesturesPlugin(),
+        ]}
+        className="w-full"
+      >
+        <CarouselContent className="my-4">
+          {credits.cast?.map((cast) => (
+            <CarouselItem key={cast.id} className="md:basis-1/4  sm:basis-1/3 lg:basis-1/5 pl-6 ">
+                <Image
+                  src={getImagePath(cast.profile_path)}
+                  alt='Movie Banner'
+                  className='h-[450px] w-[300px] object-cover rounded-3xl'
+                  width={1920}
+                  height={1080}/>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
       </div>
     </div>
   );

@@ -81,17 +81,12 @@ export async function getSearchedResults(term: string) {
 }
 
 export async function getDetails(media_type:string,id:string) {
-  const options: RequestInit = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.API_KEY}`,
-    },
-    next: {
-      revalidate: 60 * 60 * 24,
-    },
-  };
-
   const res = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=38fd1b5b8c1fdcae4a3d50b376b85bac`);
+  return res?.data;
+}
+
+
+export async function GetCredits(media_type:string,id:string) {
+  const res = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}/credits?api_key=38fd1b5b8c1fdcae4a3d50b376b85bac`);
   return res?.data;
 }
