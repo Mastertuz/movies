@@ -11,7 +11,7 @@ type Props = {
 }
 
 async function Searchpage({  params }: Props) {
-  const { term } = params
+  const { term } = await params
   if (!term) notFound()
   const termToUse =  decodeURI(term)
   const results= await getSearchedResults(termToUse)

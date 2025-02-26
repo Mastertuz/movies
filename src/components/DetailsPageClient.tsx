@@ -31,12 +31,12 @@ const resolveRatingColor= (rating:number)=>{
 
  function DetailspageClient({ details ,credits}: Props) {
   return (
-    <div className='my-10'>
+    <div className='my-10 '>
       <div className='flex gap-10   items-center'>
         <Image
           src={getImagePath(details.poster_path)}
           alt='Movie Banner'
-          className='h-[450px] w-[300px] object-cover rounded-3xl'
+          className='h-[450px] max-w-80 object-cover rounded-3xl'
           width={1920}
           height={1080}
 
@@ -44,7 +44,9 @@ const resolveRatingColor= (rating:number)=>{
         <div>
           <h4 className='text-3xl font-bold mb-10'>
             {details.title || details.name}
-            <span className='text-2xl text-gray-400'> {new Date(details.release_date).getFullYear()}</span>
+            <span className='text-2xl text-gray-400'> {new Date(details.release_date).getFullYear()
+              ||new Date(details.first_air_date).getFullYear()
+              }</span>
           </h4>
           <div className='flex items-center space-x-4 mb-6'>
             <CircularProgress progressColor={resolveRatingColor(Number(details.vote_average))} progress={Number((details.vote_average * 10).toFixed(0))} />
@@ -64,8 +66,8 @@ const resolveRatingColor= (rating:number)=>{
         </div>
       </div>
 
-      <div>
-        <h4>Cast</h4>
+      <div className='my-10'>
+        <h4 className='text-2xl mb-4 uppercase'>Top Cast</h4>
         <Carousel
         opts={{
           align: "start",
@@ -78,13 +80,15 @@ const resolveRatingColor= (rating:number)=>{
       >
         <CarouselContent className="my-4">
           {credits.cast?.map((cast) => (
-            <CarouselItem key={cast.id} className="md:basis-1/4  sm:basis-1/3 lg:basis-1/5 pl-6 ">
+            <CarouselItem key={cast.id} className="  md:basis-1/4 text-center  sm:basis-1/3 lg:basis-1/5 pl-4  cursor-pointer">
                 <Image
                   src={getImagePath(cast.profile_path)}
                   alt='Movie Banner'
-                  className='h-[450px] w-[300px] object-cover rounded-3xl'
+                  className='h-[300px] mb-4 object-cover rounded-3xl'
                   width={1920}
                   height={1080}/>
+                  <h6 className='font-semibold'>{cast.name}</h6>
+                  <p >{cast.character}</p>
             </CarouselItem>
           ))}
         </CarouselContent>

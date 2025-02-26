@@ -72,6 +72,7 @@ export type Details = {
     }
   ],
   release_date: string,
+  first_air_date: string;
   revenue: number,
   runtime: number,
   status: string,
