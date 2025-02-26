@@ -6,7 +6,7 @@ import CircularProgress from './CircleProgress';
 import { Button } from './ui/button';
 import { PlusIcon } from 'lucide-react';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
-import MovieCard from "./MovieCard"
+
 import {
   Carousel,
   CarouselContent,
@@ -96,6 +96,8 @@ const resolveRatingColor= (rating:number)=>{
         <CarouselNext />
       </Carousel>
       </div>
+
+      
     </div>
   );
 }
