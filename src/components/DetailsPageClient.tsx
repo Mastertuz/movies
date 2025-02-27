@@ -1,7 +1,7 @@
 "use client";
 import getImagePath from '@/lib/getImagePath';
 import Image from 'next/image';
-import { Credits, Details } from '../../typings';
+import { Credits, Details, Video, Videos } from '../../typings';
 import CircularProgress from './CircleProgress';
 import { Button } from './ui/button';
 import { PlusIcon } from 'lucide-react';
@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/carousel"
 type Props = {
   details: Details,
-  credits:Credits
+  credits:Credits,
+  videos:Videos
 }
 
 const resolveRatingColor= (rating:number)=>{
@@ -29,10 +30,14 @@ const resolveRatingColor= (rating:number)=>{
   }
 }
 
- function DetailspageClient({ details ,credits}: Props) {
+ function DetailspageClient({ details ,credits,videos}: Props) {
+  const trailer= videos?.results?.find((video)=>video?.type==='Trailer') as Video
+  console.log(trailer)
   return (
     <div className='my-10 '>
-      <div className='flex gap-10   items-center'>
+      <div className='flex gap-10 items-center'
+      
+      >
         <Image
           src={getImagePath(details.poster_path)}
           alt='Movie Banner'
@@ -95,6 +100,18 @@ const resolveRatingColor= (rating:number)=>{
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      </div>
+
+      <div className='my-10'>
+        <h4 className='uppercase text-2xl mb-4'>Trailer</h4>
+        <iframe
+      width="100%"
+      height='600px'
+      src={`https://www.youtube.com/embed/${trailer.key}`}
+      title="YouTube video player"
+      allowFullScreen
+    ></iframe>
+
       </div>
 
       
