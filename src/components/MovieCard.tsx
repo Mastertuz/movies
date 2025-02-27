@@ -19,7 +19,7 @@ function MovieCard({ movie, item_type }: Props) {
         </p>
         <Image
         alt={movie.title||'movie img'}
-        src={getImagePath(movie.backdrop_path || movie.poster_path)  }
+        src={getImagePath(movie.backdrop_path )  }
         width={1920}
         height={1080}
         key={movie.id}

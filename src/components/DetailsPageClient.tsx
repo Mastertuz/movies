@@ -32,7 +32,7 @@ const resolveRatingColor= (rating:number)=>{
 
  function DetailspageClient({ details ,credits,videos}: Props) {
   const trailer= videos?.results?.find((video)=>video?.type==='Trailer') as Video
-  console.log(trailer)
+  console.log(videos)
   return (
     <div className='my-10 '>
       <div className='flex gap-10 items-center'
@@ -107,7 +107,7 @@ const resolveRatingColor= (rating:number)=>{
         <iframe
       width="100%"
       height='600px'
-      src={`https://www.youtube.com/embed/${trailer.key}`}
+      src={`https://www.youtube.com/embed/${trailer?.key}`}
       title="YouTube video player"
       allowFullScreen
     ></iframe>

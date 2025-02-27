@@ -10,8 +10,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
+
 async function Moviespage() {
-  const movies = await getDiscover('movie')
+  const movies = await getDiscover('movie',1)
   return (
     <div className="my-10">
       <h2 className="text-2xl mb-4">Movies</h2>
@@ -29,6 +30,12 @@ async function Moviespage() {
           </PaginationItem>
           <PaginationItem>
             <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
           </PaginationItem>
           <PaginationItem>
             <PaginationEllipsis />
