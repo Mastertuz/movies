@@ -1,5 +1,4 @@
 import DetailspageClient from '@/components/DetailsPageClient';
-import getImagePath from '@/lib/getImagePath';
 import { GetCredits, getDetails, getVideos } from '@/lib/getMovies';
 import { Credits, Details } from '../../../../typings';
 

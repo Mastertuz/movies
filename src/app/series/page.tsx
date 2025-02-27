@@ -1,8 +1,15 @@
 import MovieCard from "@/components/MovieCard"
+import PaginationComponent from "@/components/Pagination"
 import {  getDiscover } from "@/lib/getMovies"
 
-async function Tvpage() {
-  const series = await getDiscover('tv')
+async function Tvpage(props: {
+  searchParams:{
+    page: number
+  }
+}) {
+  const {page} =await props.searchParams
+  const currentPage = Number(page) || 1;
+  const series = await getDiscover('tv', currentPage)
   return (
     <div className="my-10">
      <h2 className="text-2xl mb-4">Series</h2>
@@ -12,6 +19,7 @@ async function Tvpage() {
          <MovieCard key={seria.id} item_type='tv'  movie={seria}/>
        ))}
      </div>
+     <PaginationComponent/>
 
     </div>
   )

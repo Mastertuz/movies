@@ -17,7 +17,7 @@ export async function getTrending(type: string = 'all', time_window: string = 'w
   return res?.results as Movie[]
 }
 
-export async function getDiscover(type: string,page:number=1) {
+export async function getDiscover(type: string,page:number) {
   const data = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.API_KEY}&page=${page}&vote_count.gte=5000`)
   const res = await data.json()
   return res?.results as Movie[]

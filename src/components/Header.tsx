@@ -27,11 +27,11 @@ function Header() {
             <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/'}>Home</Link>
           </li>
           <li>
-            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/series'}>
+            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/series?page=1'}>
             Series</Link>
           </li>
           <li>
-            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/movies'}>Movies</Link>
+            <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/movies?page=1'}>Movies</Link>
           </li>
           <li>
             <Link className=" uppercase text-white hover:text-teal-400 transition-colors ease-in-out" href={'/watchlist'}>Watchlist</Link>
