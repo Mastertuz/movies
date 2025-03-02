@@ -20,7 +20,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   const offset = circumference - (progress / 100) * circumference
 
   return (
-    <div className="relative" style={{ width: size, height: size }}>
+    <div className="relative size-24 max-lg:size-20 max-md:size-14" >
       <svg className="w-full h-full" viewBox={`0 0 ${size} ${size}`}>
         <circle
           className="transition-all duration-300 ease-in-out"
@@ -46,7 +46,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-2xl font-semibold">{`${Math.round(progress)}%`}</span>
+        <span className="text-2xl max-md:text-base font-semibold">{`${Math.round(progress)}%`}</span>
       </div>
     </div>
   )
