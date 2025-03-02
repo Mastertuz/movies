@@ -7,22 +7,19 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
-import Link from "next/link"
 
 type Props = {
   title: string,
   movies: Movie[],
-  media_type?:string,
+  media_type?: string,
   isVertical?: boolean
 }
-function MovieCarousel({ title, movies, isVertical ,media_type}: Props) {
 
+function MovieCarousel({ title, movies, isVertical, media_type }: Props) {
   return (
     <div className="">
-      <h2 className="text-2xl mb-8">{title}</h2>
+      <h2 className="text-2xl mb-8 max-lg:mb-2 max-sm:text-xl">{title}</h2>
 
       <Carousel
         opts={{
@@ -34,15 +31,14 @@ function MovieCarousel({ title, movies, isVertical ,media_type}: Props) {
         ]}
         className="w-full"
       >
-        <CarouselContent className="my-4">
-          {movies?.map((movie) => (
-            <CarouselItem key={movie.id} className="md:basis-1/4  sm:basis-1/3 lg:basis-1/5 pl-6 ">
-                <MovieCard movie={movie} item_type={media_type} />
+        <CarouselContent className="py-4">
+          {movies?.map((movie) => ( 
+            <CarouselItem key={movie.id} className="lg:basis-1/4 basis-1/3 max-[540px]:basis-1/2 max-[380px]:basis-full sm:basis-1/3 2xl:basis-1/5  pl-4">
+              <MovieCard  movie={movie} item_type={media_type} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        
       </Carousel>
     </div>
   )

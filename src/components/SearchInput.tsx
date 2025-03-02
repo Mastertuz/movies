@@ -42,7 +42,7 @@ function SearchInput() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Search..." {...field} />
+                <Input className="max-sm:w-28 max-[400px]:w-20" placeholder="Search" {...field} />
               </FormControl>
             </FormItem>
           )}

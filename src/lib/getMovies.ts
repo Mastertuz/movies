@@ -24,7 +24,7 @@ export async function getDiscover(type: string,page:number) {
 }
 
 export async function getSearchedResults(term: string) {
-  const url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.API_KEY}&vote_count.gte=5000&query=${term}`
+  const url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.API_KEY}&query=${term}`
   const data = await fetch(url)
   const res = await data.json() as SearchResults
   return res.results;

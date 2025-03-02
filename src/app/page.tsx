@@ -1,7 +1,6 @@
 import MovieCarousel from "@/components/MovieCarousel";
 import MovieSliderWrapper from "@/components/MovieSliderWrapper";
 import { getTopRated, getTrending, getUpcoming } from "@/lib/getMovies";
-
 export default async function Home() {
   const trending= await getTrending()
   const upcomingMovies= await getUpcoming('movie')
@@ -13,7 +12,7 @@ export default async function Home() {
       
       <MovieSliderWrapper/>
 
-      <div className="flex flex-col space-y-10 mb-10" >
+      <div className="flex flex-col space-y-10 max-lg:space-y-6 mb-10" >
 
        <MovieCarousel title="Top Rated Movies" movies={topRatedMovies} media_type='movie'/>
        <MovieCarousel title="Top Rated Series" movies={topRatedSeries} media_type='tv'/>

@@ -23,7 +23,7 @@ function PaginationComponent() {
     <Pagination className="my-4">
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious  className='' href={createPageURL(currentPage>1?currentPage-1:currentPage)}/>
+          <PaginationPrevious href={createPageURL(currentPage > 1 ? currentPage - 1 : currentPage)} />
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href={createPageURL(1)}>1</PaginationLink>
@@ -38,7 +38,7 @@ function PaginationComponent() {
           <PaginationEllipsis />
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext href={createPageURL(currentPage+1)} />
+          <PaginationNext href={createPageURL(currentPage + 1)} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
