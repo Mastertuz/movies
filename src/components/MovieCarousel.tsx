@@ -16,9 +16,9 @@ type Props = {
   isVertical?: boolean
 }
 
-function MovieCarousel({ title, movies, isVertical, media_type }: Props) {
+function MovieCarousel({ title, movies,  media_type }: Props) {
   return (
-    <div className="">
+    <div className="select-none">
       <h2 className="text-2xl mb-8 max-lg:mb-2 max-sm:text-xl">{title}</h2>
 
       <Carousel

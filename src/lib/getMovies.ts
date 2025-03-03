@@ -17,9 +17,8 @@ export async function getTrending(type: string = 'all', time_window: string = 'w
   return res?.results as Movie[]
 }
 
-export async function getDiscover(type: string, page: number, genre?: string) {
-  const data = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.API_KEY}&page=${page}&with_genres=${genre||''}
-  
+export async function getDiscover(type: string, page: number, genre?: string,sort_by?:string,year?:number) {
+  const data = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.API_KEY}&page=${page}&with_genres=${genre||''}&sort_by=${sort_by||''}&${type==='tv'?'first_air_date_year':'primary_release_year'}=${year||''}&vote_count.gte=200
     `)
   const res = await data.json()
   return res?.results as Movie[]
