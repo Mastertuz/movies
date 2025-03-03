@@ -1,3 +1,4 @@
+import Filters from "@/components/Filters";
 import MovieCarousel from "@/components/MovieCarousel";
 import MovieSliderWrapper from "@/components/MovieSliderWrapper";
 import { getTopRated, getTrending, getUpcoming } from "@/lib/getMovies";
@@ -11,7 +12,6 @@ export default async function Home() {
     <main> 
       
       <MovieSliderWrapper/>
-
       <div className="flex flex-col space-y-10 max-lg:space-y-6 mb-10" >
 
        <MovieCarousel title="Top Rated Movies" movies={topRatedMovies} media_type='movie'/>

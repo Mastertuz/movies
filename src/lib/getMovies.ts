@@ -17,8 +17,10 @@ export async function getTrending(type: string = 'all', time_window: string = 'w
   return res?.results as Movie[]
 }
 
-export async function getDiscover(type: string,page:number) {
-  const data = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.API_KEY}&page=${page}&vote_count.gte=5000`)
+export async function getDiscover(type: string, page: number, genre?: string) {
+  const data = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${process.env.API_KEY}&page=${page}&with_genres=${genre||''}
+  
+    `)
   const res = await data.json()
   return res?.results as Movie[]
 }
@@ -30,21 +32,27 @@ export async function getSearchedResults(term: string) {
   return res.results;
 }
 
-export async function getDetails(media_type:string,id:string) {
+export async function getDetails(media_type: string, id: string) {
   const data = await fetch(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.API_KEY}`)
   const res = await data.json()
   return res
 }
 
 
-export async function GetCredits(media_type:string,id:string) {
+export async function GetCredits(media_type: string, id: string) {
   const data = await fetch(`https://api.themoviedb.org/3/${media_type}/${id}/credits?api_key=${process.env.API_KEY}`)
   const res = await data.json()
   return res;
 }
 
-export async function getVideos(id:string,media_type:string) {
+export async function getVideos(id: string, media_type: string) {
   const res = await fetch(`https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.API_KEY}`)
   const data = await res.json()
   return data
+}
+
+export async function getGenres(media_type: string) {
+  const data = await fetch(`https://api.themoviedb.org/3/genre/${media_type}/list?api_key=${process.env.API_KEY}`)
+  const res = await data.json()
+  return res?.genres
 }

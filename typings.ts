@@ -132,3 +132,8 @@ export type Videos = {
   id: number,
   results: Video[]
 }
+
+export type Genre= {
+  id: number,
+  name: string
+}
