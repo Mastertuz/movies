@@ -22,7 +22,7 @@ async function Tvpage(props: {
     <div className="my-10">
      <h2 className="text-2xl mb-4">Series</h2>
      <Filters media_type='tv' primary_release_year={primary_release_year}/>
-     <div className="grid grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-[520px]:grid-cols-2 max-[380px]:grid-cols-1 gap-4">
+     <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 max-[450px]:grid-cols-1 gap-4">
        {series.map((seria)=>(
          <MovieCard key={seria.id} item_type='tv'  movie={seria}/>
        ))}

@@ -32,11 +32,20 @@ function MovieCard({ movie, item_type }: Props) {
             key={movie.id}
             className="w-fit max-xl:w-full h-56 max-xl:h-44 max-md:h-32   max-sm:w-full object-cover rounded-2xl hover:scale-105 transition-all ease-in-out"
           />
-          <div className="absolute top-2 left-2 text-white text-xs font-bold px-2 py-1 rounded" style={{ backgroundColor: resolveRatingColor(movie.vote_average) }}>
-            {movie.vote_average.toFixed(1)}
-          </div>
+          {(movie.vote_average !== 0 && movie.vote_average != undefined) && (
+            <div
+              className={`absolute top-2 left-2 text-white text-xs font-bold px-2 py-1 rounded`}
+              style={{
+                backgroundColor: resolveRatingColor(movie.vote_average),
+              }}
+            >
+              {movie.vote_average?.toFixed(1)}
+            </div>
+          )}
           <div className="absolute bottom-0 left-0 right-0 p-2 rounded-b-2xl bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-            <span className="text-white text-sm font-semibold max-sm:text-xs">{movie.title || movie.name}</span>
+            <span className="text-white text-sm font-semibold max-sm:text-xs">
+              {movie.title || movie.name}
+            </span>
           </div>
         </div>
       </Link>
