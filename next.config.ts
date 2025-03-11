@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
 
       {
         protocol: "https",
-        hostname: "links.papareact.com",
+        hostname: "placehold.co",
       },
     ],
   },
