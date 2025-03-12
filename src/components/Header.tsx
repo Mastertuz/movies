@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link"
 import Image from "next/image"
 import SearchInput from "./SearchInput"
@@ -17,9 +18,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from "next/navigation"
 
 
 function Header() {
+  const router = useRouter()
   return (
     <header className="w-full bg-[#0a0a0a]  sticky py-2 top-0 mb-6 z-50 flex justify-between items-center">
       <Link href={'/'} >
@@ -53,19 +56,22 @@ function Header() {
       <div className="flex items-center space-x-4 max-[360px]:space-x-2">
         <div className="lg:hidden">
           <DropdownMenu >
-            <DropdownMenuTrigger className="flex">
+            <DropdownMenuTrigger className="flex max-[400px]:text-sm">
               Page
               <ChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem><Link className=" text-white" href={'/'}>Home</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link className=" text-white" href={'/movies?page=1'}>Movies</Link></DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link className=" text-white" href={'/series?page=1'}>
-                  Series</Link>
+              <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/')} >
+                Home
+                </DropdownMenuItem >
+              <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/movies?page=1')}>
+                Movies
+                </DropdownMenuItem >
+              <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/series?page=1')}> 
+                  Series
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link className=" text-white" href={'/watchlist'}>Watchlist</Link>
+              <DropdownMenuItem className="cursor-pointer" onClick={()=>router.push('/watchlist')}>
+                Watchlist
               </DropdownMenuItem>
 
             </DropdownMenuContent>
