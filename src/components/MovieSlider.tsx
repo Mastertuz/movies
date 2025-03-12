@@ -31,17 +31,17 @@ function MovieSlider({ movies }: { movies: Movie[] }) {
               <Image
                 className='rounded-3xl max-h-[600px] object-cover'
                 key={movie.id}
-                src={getImagePath(movie.backdrop_path, true)}
+                src={movie.backdrop_path!=null?getImagePath(movie.backdrop_path, true):`/placeholder.svg`}
                 width={1920}
                 height={1080}
                 alt={movie.title || 'movie slider img'}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-3xl" />
               <div className="absolute bottom-10 max-lg:bottom-2 max-lg:p-8 max-[450px]:bottom-0 left-0  p-10 space-y-5 max-lg:space-y-2 text-white z-20">
-                <h2 className="text-5xl max-lg:text-4xl max-md:text-2xl max-[450px]:text-lg  font-bold max-w-xl z-50">
+                <h2 className="text-5xl max-lg:text-4xl max-md:text-2xl max-[450px]:text-lg  font-bold  z-50">
                   {movie.title || movie.name}
                 </h2>
-                <p className="max-w-xl max-lg:text-sm max-[450px]:text-xs line-clamp-3">{movie.overview}</p>
+                <p className="max-w-xl max-lg:text-sm max-[450px]:text-xs line-clamp-3 max-sm:line-clamp-2">{movie.overview}</p>
               </div>
             </Link>
           </div>

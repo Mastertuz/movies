@@ -88,7 +88,7 @@ function DetailspageClient({ details, credits, videos }: Props) {
             {credits.cast?.map((cast) => (
               <CarouselItem key={cast.id} className="text-center basis-1/6 max-lg:basis-1/5 max-md:basis-1/4 max-[540px]:basis-1/3 pl-4  cursor-pointer">
                 <Image
-                  src={getImagePath(cast.profile_path)}
+                  src={cast.profile_path!=null?getImagePath(cast.profile_path):`/placeholder.svg`}
                   alt='Movie Banner'
                   className='h-[300px] max-lg:h-[230px] max-sm:h-[180px]  mb-4 object-cover rounded-3xl'
                   width={1920}
