@@ -26,7 +26,7 @@ function MovieSlider({ movies }: { movies: Movie[] }) {
       ]}>
       <CarouselContent>
         {movies.map((movie) => (
-          <div key={movie.id} className='flex-[0_0_100%] min-w-0 pl-4 relative'>
+          <div key={movie.id} className='select-none flex-[0_0_100%] min-w-0 pl-4 relative'>
             <Link href={`${movie.media_type}/${movie.id}`}>
               <Image
                 className='rounded-3xl max-h-[600px] object-cover'
