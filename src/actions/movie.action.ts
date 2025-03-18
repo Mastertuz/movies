@@ -52,16 +52,23 @@ export async function addToWatchlist(clerkUserId: string, movieDetails: Details,
   }
 }
 
-export async function getMoviesFromWatchList(){
-  try{
+export async function getMoviesFromWatchList(clerkUserId: string) {
+  try {
+    // Find the user in the database
+    const userId = await getDbUserId(clerkUserId);
+    if (!userId) return [];
 
-   const movies=await prisma.movie.findMany({
-    orderBy:{
-      id:'desc'
-    },
-   })
-   return movies
-  }catch(error){
+    // Fetch movies specific to the user
+    const movies = await prisma.movie.findMany({
+      where: {
+        user_id: userId,
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    });
+    return movies;
+  } catch (error) {
     console.error('Error getting movies from watchlist:', error);
     throw error;
   }

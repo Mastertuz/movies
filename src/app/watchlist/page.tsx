@@ -1,8 +1,12 @@
+'use server'
 import { getMoviesFromWatchList } from "@/actions/movie.action"
 import MovieCard from "@/components/MovieCard"
+import { auth } from "@clerk/nextjs/server"
 
 async function Watchlistpage() {
-  const movies = await getMoviesFromWatchList()
+  const {userId}=await auth()
+  if (!userId) return
+  const movies = await getMoviesFromWatchList(userId)
   console.log(movies)
   return (
     <div className="my-10">
