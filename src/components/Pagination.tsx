@@ -29,10 +29,10 @@ function PaginationComponent() {
           {currentPage>1&&<PaginationLink href={createPageURL(currentPage-1)}>{currentPage-1}</PaginationLink>}
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href={createPageURL(2)} isActive>{currentPage}</PaginationLink>
+          <PaginationLink href={createPageURL(currentPage)} isActive>{currentPage}</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href={createPageURL(3)}>{currentPage+1}</PaginationLink>
+          <PaginationLink href={createPageURL(currentPage+1)}>{currentPage+1}</PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationEllipsis />
