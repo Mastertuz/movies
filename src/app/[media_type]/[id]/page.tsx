@@ -1,5 +1,5 @@
 import DetailspageClient from '@/components/DetailsPageClient';
-import { GetCredits, getDetails, getVideos } from '@/lib/getMovies';
+import { GetCredits, getDetails, getDiscover, getVideos } from '@/lib/getMovies';
 import { Credits, Details } from '../../../../typings';
 
 type Params = {
@@ -15,5 +15,5 @@ export default async function Detailspage({ params }: Params) {
   const videos = await getVideos(id,media_type)
   const details:Details = await getDetails(media_type, id);
   const credits:Credits = await GetCredits(media_type, id);
-  return <DetailspageClient videos={videos} details={details} credits={credits}/>;
+  return <DetailspageClient media_type={media_type} videos={videos} details={details} credits={credits}/>;
 }

@@ -1,23 +1,24 @@
-export type Movie = {
-  media_type: string,
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
+export interface Movie  {
+  media_type?: string |null,
+  adult?: boolean|null;
+  backdrop_path?: string|null;
+  genre_ids?: number[] |null;
   id: number;
-  original_language: string;
-  original_title?: string;
-  original_name?: string;
-  overview: string;
-  popularity: number;
-  poster_path?: string;
-  release_date?: string;
-  title?: string;
-  name?: string;
-  video?: boolean;
-  vote_average: number;
-  vote_count: number;
-  first_air_date?: string;
-  type?: string
+  tmdb_id?: string |null;
+  original_language?: string|null;
+  original_title?: string|null;
+  original_name?: string|null;
+  overview?: string|null;
+  popularity?: number |null;
+  poster_path?: string|null;
+  release_date?: string |null;
+  title?: string |null;
+  name?: string |null;
+  video?: boolean |null;
+  vote_average?: number |null;
+  vote_count?: number |null;
+  first_air_date?: string |null;
+  type?: string |null;
 }
 
 
@@ -28,8 +29,8 @@ export type SearchResults = {
   total_results: number;
 }
 export type Details = {
-  adult: boolean,
-  backdrop_path: string,
+  adult?: boolean,
+  backdrop_path: string|undefined,
   name?: string,
   belongs_to_collection: {
     id: 230,
@@ -49,6 +50,8 @@ export type Details = {
     }
   ],
   id: number,
+  original_language: string,
+  original_name: string,
   original_title: string,
   overview: string,
   popularity: number,

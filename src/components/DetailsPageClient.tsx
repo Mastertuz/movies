@@ -14,10 +14,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { useUser } from '@clerk/nextjs';
+import { addToWatchlist } from '@/actions/movie.action';
 type Props = {
   details: Details,
   credits: Credits,
   videos: Videos
+  media_type: string
 }
 
 const resolveRatingColor = (rating: number) => {
@@ -29,8 +32,10 @@ const resolveRatingColor = (rating: number) => {
     return "hsl(0 72.2% 50.6%)";
   }
 }
+function DetailspageClient({ details, credits, videos,media_type }: Props) {
+   const {user}=useUser()
+   if(!user) return
 
-function DetailspageClient({ details, credits, videos }: Props) {
   const trailer = videos?.results?.find((video) => video?.type === 'Trailer') as Video
   return (
     <div className='my-10'>
@@ -57,7 +62,9 @@ function DetailspageClient({ details, credits, videos }: Props) {
               <CircularProgress progressColor={resolveRatingColor(Number(details.vote_average))} progress={Number((details.vote_average * 10).toFixed(0))} />
               <p className='max-sm:text-sm max-[400px]:hidden'>User Score</p>
             </div>
-            <Button className='text-md max-sm:text-xs' variant={'outline'}>
+            <Button 
+            onClick={()=>addToWatchlist(user.id,details,media_type)}
+            className='text-md max-sm:text-xs' variant={'outline'}>
               <PlusIcon />
               Add to watchlist</Button>
           </div>
