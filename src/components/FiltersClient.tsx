@@ -1,11 +1,12 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { Genre } from "../../typings";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "./ui/input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select';
 
 interface FiltersClientProps {
   genresList: Genre[];
@@ -45,43 +46,26 @@ function FiltersClient({ genresList: genres, sortBy, primary_release_year }: Fil
 
   return (
     <div className="my-6 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="rounded-full">Sort by
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
-          {sortBy?.map((sortOption) => (
-            <DropdownMenuItem
-              className="cursor-pointer"
-              key={sortOption.value}
-              onClick={() => handleSortByUpdate(sortOption.value)}
-            >
-              {sortOption.name}
-            </DropdownMenuItem>
+      <Select  onValueChange={(value) => handleSortByUpdate(value)} value={searchParams.get('sort_by') || ''}>
+        <SelectTrigger className="w-28">
+          <SelectValue placeholder="Sort by:"/>
+        </SelectTrigger>
+        <SelectContent>
+          {sortBy?.map((option) => (
+            <SelectItem value={option.value} key={option.value}>{option.name}</SelectItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="rounded-full">Genres
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className='h-60 overflow-y-auto'>
+        </SelectContent>
+      </Select>
+      <Select  onValueChange={(value) => handleGenresUpdate(+value)} value={searchParams.get('with_genres') || ''}>
+        <SelectTrigger className="w-44">
+          <SelectValue placeholder="Genres:"/>
+        </SelectTrigger>
+        <SelectContent>
           {genres?.map((genre) => (
-            <DropdownMenuItem
-              className="cursor-pointer"
-              key={genre.id}
-              onClick={() => handleGenresUpdate(genre.id)}
-            >
-              {genre.name}
-            </DropdownMenuItem>
+            <SelectItem value={String(genre.id)} key={genre.id}>{genre.name}</SelectItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </SelectContent>
+      </Select>
       <form className='w-20' onSubmit={handleYearSubmit}>
         <Input
           placeholder="Year"
