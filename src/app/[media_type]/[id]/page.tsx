@@ -1,5 +1,5 @@
 import DetailspageClient from '@/components/DetailsPageClient';
-import { GetCredits, getDetails, getDiscover, getVideos } from '@/lib/getMovies';
+import { GetCredits, getDetails, getVideos } from '@/lib/getMovies';
 import { Credits, Details } from '../../../../typings';
 
 type Params = {

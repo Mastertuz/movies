@@ -4,9 +4,8 @@ import Image from 'next/image';
 import { Credits, Details, Video, Videos } from '../../typings';
 import CircularProgress from './CircleProgress';
 import { Button } from './ui/button';
-import { PlusIcon, CheckIcon } from 'lucide-react'; // Added CheckIcon for "Added"
+import { PlusIcon, CheckIcon } from 'lucide-react';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
-
 import {
   Carousel,
   CarouselContent,
@@ -15,8 +14,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useUser } from '@clerk/nextjs';
-import { addToWatchlist, removeFromWatchlist, getMoviesFromWatchList } from '@/actions/movie.action';
-import { useEffect, useState } from 'react';  // Import hooks
+import { addToWatchlist, removeFromWatchlist, isInWatchList } from '@/actions/movie.action';
+import { useState } from 'react'; 
 
 type Props = {
   details: Details,
@@ -33,29 +32,30 @@ const resolveRatingColor = (rating: number) => {
 
 function DetailspageClient({ details, credits, videos, media_type }: Props) {
   const { user } = useUser();
-  const [isInWatchlist, setIsInWatchlist] = useState<boolean>(false);
-
-  useEffect(() => {
-    const checkWatchlistStatus = async () => {
-      if (!user) return;
-      const watchlist = await getMoviesFromWatchList(user.id);
-      const isAdded = watchlist.some((movie) => movie.tmdb_id === details.id.toString());
-      setIsInWatchlist(isAdded);
-    };
-
-    checkWatchlistStatus();
-  }, [user, details.id]);
-
-  const handleWatchlistToggle = async () => {
-    if (isInWatchlist) {
-      await removeFromWatchlist(user!.id, details.id.toString());
-    } else {
-      await addToWatchlist(user!.id, details, media_type);
-    }
-    setIsInWatchlist(!isInWatchlist); // Update the state after action
-  };
+  const [isAdded, setIsAdded] = useState<boolean>(false);
 
   if (!user) return;
+
+  const getStatus = async () => {
+    try {
+      const res = await isInWatchList(user.id, details.id.toString());
+      setIsAdded(!!res);
+    } catch (err) {
+      console.error('Error checking if movie is in watchlist:', err);
+    }
+  };
+
+  getStatus();
+
+  const handleWatchlistToggle = async () => {
+    if (isAdded) {
+      await removeFromWatchlist(user.id, details.id.toString());
+      setIsAdded(false);
+    } else {
+      await addToWatchlist(user.id, details, media_type);
+      setIsAdded(true);
+    }
+  };
 
   const trailer = videos?.results?.find((video) => video?.type === 'Trailer') as Video;
 
@@ -73,7 +73,7 @@ function DetailspageClient({ details, credits, videos, media_type }: Props) {
         <div>
           <h4 className='text-3xl font-bold mb-10 max-lg:mb-4 max-md:text-2xl max-md:mb-2 max-sm:text-lg'>
             {details.title || details.name}
-            <span className='text-2xl text-gray-400 max-sm:text-lg'> 
+            <span className='text-2xl text-gray-400 max-sm:text-lg ml-2'> 
               {new Date(details.release_date).getFullYear() || new Date(details.first_air_date).getFullYear()}
             </span>
           </h4>
@@ -86,13 +86,12 @@ function DetailspageClient({ details, credits, videos, media_type }: Props) {
               />
               <p className='max-sm:text-sm max-[400px]:hidden'>User Score</p>
             </div>
-
             <Button 
               onClick={handleWatchlistToggle}
-              className={`text-md max-sm:text-xs ${isInWatchlist ? 'bg-green-500' : 'bg-slate-800'} text-white`} 
+              className={`text-md max-sm:text-xs ${isAdded ? 'bg-[#10B981] hover:bg-[#10b98183]' : 'inherit'} text-white`} 
               variant={'outline'}
             >
-              {isInWatchlist ? (
+              {isAdded ? (
                 <>
                   <CheckIcon className='mr-2' /> In watchlist
                 </>
