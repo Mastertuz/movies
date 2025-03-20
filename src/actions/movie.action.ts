@@ -52,24 +52,65 @@ export async function addToWatchlist(clerkUserId: string, movieDetails: Details,
   }
 }
 
+export async function removeFromWatchlist(clerkUserId: string, movieId: string) {
+  try {
+    const userId = await getDbUserId(clerkUserId);
+    if (!userId) return;
+
+    const movie = await prisma.movie.findUnique({
+      where: { tmdb_id: movieId }
+    });
+
+    if (!movie) throw new Error('Movie not found');
+
+    await prisma.usersOnMovies.delete({
+      where: {
+        userId_movieId: {
+          userId: userId,
+          movieId: movie.id
+        }
+      }
+    });
+
+    // Check if the movie is linked to any other users
+    const remainingLinks = await prisma.usersOnMovies.count({
+      where: { movieId: movie.id }
+    });
+
+    if (remainingLinks === 0) {
+      await prisma.movie.delete({
+        where: { id: movie.id }
+      });
+    }
+
+    console.log('Movie removed from watchlist:', movieId);
+    revalidatePath('/');
+  } catch (error) {
+    console.log('Error removing movie from watchlist:', error);
+  }
+}
+
+
 export async function getMoviesFromWatchList(clerkUserId: string) {
   try {
-    // Find the user in the database
     const userId = await getDbUserId(clerkUserId);
     if (!userId) return [];
 
-    // Fetch movies specific to the user
     const movies = await prisma.movie.findMany({
       where: {
-        user_id: userId,
+        user: {
+          some: { userId: userId }
+        }
       },
-      orderBy: {
-        id: 'desc',
-      },
+      orderBy: { id: 'desc' },
     });
+
     return movies;
   } catch (error) {
     console.error('Error getting movies from watchlist:', error);
     throw error;
   }
 }
+
+
+
