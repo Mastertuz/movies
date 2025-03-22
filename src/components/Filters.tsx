@@ -14,11 +14,10 @@ export default async function Filters(props: {
     { value: "vote_average.desc", name: "Rating" },
     { value: "vote_count.desc", name: "Votes" },
   ];
-  const { media_type, primary_release_year } = await props;
+  const { media_type} = await props;
   const genres = (await getGenres(`${media_type}`)) as Genre[];
   return (
     <FiltersClient
-      primary_release_year={primary_release_year}
       genresList={genres}
       sortBy={sortBy}
     />

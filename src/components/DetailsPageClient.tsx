@@ -110,7 +110,7 @@ function DetailspageClient({ details, is_added, userId, credits, videos, media_t
       </div>
 
       <div className='my-10 '>
-        <h4 className='text-2xl mb-4 uppercase'>Top Cast</h4>
+        <h4 className='text-2xl mb-4 uppercase max-sm:text-xl'>Top Cast</h4>
         <Carousel
           opts={{
             align: "start",
@@ -141,7 +141,7 @@ function DetailspageClient({ details, is_added, userId, credits, videos, media_t
       </div>
 
       <div className='my-10 '>
-        <h4 className='uppercase text-2xl mb-4'>Trailer</h4>
+        <h4 className='uppercase text-2xl mb-4 max-sm:text-xl'>Trailer</h4>
         <iframe
           width="100%"
           height='600px'

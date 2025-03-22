@@ -1,20 +1,16 @@
 'use client'
-import { useEffect, useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { useState } from 'react';
 import { Genre } from "../../typings";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "./ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue,SelectLabel,SelectGroup } from './ui/select';
 
 interface FiltersClientProps {
   genresList: Genre[];
   sortBy: { value: string, name: string }[];
-  primary_release_year: number;
 }
 
-function FiltersClient({ genresList: genres, sortBy, primary_release_year }: FiltersClientProps) {
+function FiltersClient({ genresList: genres, sortBy }: FiltersClientProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -45,10 +41,10 @@ function FiltersClient({ genresList: genres, sortBy, primary_release_year }: Fil
   };
 
   return (
-    <div className="my-6 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
-      <Select  onValueChange={(value) => handleSortByUpdate(value)} value={searchParams.get('sort_by') || ''}>
+    <div className="my-6 pb-2 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
+      <Select onValueChange={(value) => handleSortByUpdate(value)} value={searchParams.get('sort_by') || ''}>
         <SelectTrigger className="w-28">
-          <SelectValue placeholder="Sort by:"/>
+          <SelectValue placeholder="Sort by:" />
         </SelectTrigger>
         <SelectContent>
           {sortBy?.map((option) => (
@@ -58,20 +54,21 @@ function FiltersClient({ genresList: genres, sortBy, primary_release_year }: Fil
       </Select>
       <Select  onValueChange={(value) => handleGenresUpdate(+value)} value={searchParams.get('with_genres') || ''}>
         <SelectTrigger className="w-44">
-          <SelectValue placeholder="Genres:"/>
+          <SelectValue placeholder="Genres:" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className='max-h-48'>
           {genres?.map((genre) => (
             <SelectItem value={String(genre.id)} key={genre.id}>{genre.name}</SelectItem>
           ))}
         </SelectContent>
       </Select>
-      <form className='w-20' onSubmit={handleYearSubmit}>
+
+      <form className='max-w-20 min-w-20' onSubmit={handleYearSubmit}>
         <Input
           placeholder="Year"
           value={year}
           type='number'
-          className='focus-visible:ring-0'
+          className='focus-visible:ring-0 max-[400px]:text-xs '
           onChange={handleYearChange}
         />
       </form>
