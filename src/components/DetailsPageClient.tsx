@@ -16,13 +16,8 @@ import {
 import { useUser } from '@clerk/nextjs';
 import { addToWatchlist, removeFromWatchlist, isInWatchList } from '@/actions/movie.action';
 import { useState } from 'react'; 
+import { User } from '@clerk/nextjs/server';
 
-type Props = {
-  details: Details,
-  credits: Credits,
-  videos: Videos,
-  media_type: string
-};
 
 const resolveRatingColor = (rating: number) => {
   if (rating >= 7) return "hsl(160.1 84.1% 39.4%)";
@@ -30,29 +25,26 @@ const resolveRatingColor = (rating: number) => {
   return "hsl(0 72.2% 50.6%)";
 };
 
-function DetailspageClient({ details, credits, videos, media_type }: Props) {
-  const { user } = useUser();
-  const [isAdded, setIsAdded] = useState<boolean>(false);
+type Props = {
+  details:    Details,
+  userId:     string,
+  is_added:   boolean | undefined,
+  credits:    Credits,
+  videos:     Videos,
+  media_type: string
+};
 
-  if (!user) return;
+function DetailspageClient({ details, is_added, userId, credits, videos, media_type }: Props) {
+  const [isAdded, setIsAdded] = useState<boolean>(is_added || false);
 
-  const getStatus = async () => {
-    try {
-      const res = await isInWatchList(user.id, details.id.toString());
-      setIsAdded(!!res);
-    } catch (err) {
-      console.error('Error checking if movie is in watchlist:', err);
-    }
-  };
-
-  getStatus();
+  if (!userId) return;
 
   const handleWatchlistToggle = async () => {
     if (isAdded) {
-      await removeFromWatchlist(user.id, details.id.toString());
+      await removeFromWatchlist(userId, details.id.toString());
       setIsAdded(false);
     } else {
-      await addToWatchlist(user.id, details, media_type);
+      await addToWatchlist(userId, details, media_type);
       setIsAdded(true);
     }
   };

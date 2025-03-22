@@ -54,25 +54,25 @@ export async function addToWatchlist(clerkUserId: string, movieDetails: Details,
 
 
 export async function isInWatchList(clerkUserId: string, movieId: string) {
-          try{
-            const userId = await getDbUserId(clerkUserId);
-            if (!userId) return false;
-            let movie = await prisma.movie.findUnique({
-              where: { tmdb_id: movieId.toString() }
-            });
-            if (!movie) return false        
-            const existingEntry = await prisma.usersOnMovies.findUnique({
-              where: {
-                userId_movieId: {
-                  userId: userId,
-                  movieId: movie?.id,
-                },
-              },
-            });
-            if(existingEntry) return true
-          }catch(error){
-            console.log('Error checking if movie is in watchlist:', error);
-          }
+  try {
+    const userId = await getDbUserId(clerkUserId);
+    if (!userId) return false;
+    let movie = await prisma.movie.findUnique({
+      where: { tmdb_id: movieId.toString() }
+    });
+    if (!movie) return false
+    const existingEntry = await prisma.usersOnMovies.findUnique({
+      where: {
+        userId_movieId: {
+          userId: userId,
+          movieId: movie?.id,
+        },
+      },
+    });
+    if (existingEntry) return true
+  } catch (error) {
+    console.log('Error checking if movie is in watchlist:', error);
+  }
 }
 
 
