@@ -12,8 +12,8 @@ type Params = {
 };
 
 export default async function Detailspage({ params }: Params) {
-  const { media_type } = await params;
-  const { id } = await params;
+  const { media_type } =  params;
+  const { id } =  params;
   const videos = await getVideos(id, media_type);
   const details: Details = await getDetails(media_type, id);
   const credits: Credits = await GetCredits(media_type, id);
