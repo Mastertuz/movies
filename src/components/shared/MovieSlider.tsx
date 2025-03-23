@@ -8,9 +8,6 @@ import getImagePath from '@/lib/getImagePath';
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 import Link from 'next/link';
 

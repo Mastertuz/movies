@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Genre } from "../../../typings";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "../ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue,SelectLabel,SelectGroup } from '../ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '../ui/select';
 
 interface FiltersClientProps {
   genresList: Genre[];

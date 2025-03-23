@@ -23,7 +23,7 @@ async function Moviespage(props: {
       <Filters media_type='movie' primary_release_year={primary_release_year}/>
       <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 max-[450px]:grid-cols-1 gap-4 ">
       {movies.map((movie) => (
-          <MovieCard  key={movie.id} item_type="movie" movie={movie} isVertical />
+          <MovieCard  key={movie.id} item_type="movie" movie={movie} />
         ))}
       </div>
 

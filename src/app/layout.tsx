@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/shared/theme-provider"
 import Header from "@/components/shared/Header";
 import {
   ClerkProvider,
@@ -19,19 +18,12 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning >
       <body suppressHydrationWarning>
-        <ThemeProvider
-         attribute="class"
-         defaultTheme="system"
-         enableSystem
-         disableTransitionOnChange
-        >
           <main className="px-8 max-md:px-4">
             <div className="max-w-screen-2xl mx-auto">
           <Header/>
         {children}
             </div>
           </main>
-        </ThemeProvider>
       </body>
     </html>
     </ClerkProvider>

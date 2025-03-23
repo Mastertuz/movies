@@ -10,13 +10,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useUser } from '@clerk/nextjs';
-import { addToWatchlist, removeFromWatchlist, isInWatchList } from '@/actions/movie.action';
+import { addToWatchlist, removeFromWatchlist } from '@/actions/movie.action';
 import { useState } from 'react'; 
-import { User } from '@clerk/nextjs/server';
 
 
 const resolveRatingColor = (rating: number) => {
