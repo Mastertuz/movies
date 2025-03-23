@@ -37,7 +37,6 @@ export async function addToWatchlist(clerkUserId: string, movieDetails: Details,
         },
       });
     }
-    // Add movie to user's watchlist through UsersOnMovies table
     await prisma.usersOnMovies.create({
       data: {
         userId: userId,
@@ -57,7 +56,7 @@ export async function isInWatchList(clerkUserId: string, movieId: string) {
   try {
     const userId = await getDbUserId(clerkUserId);
     if (!userId) return false;
-    let movie = await prisma.movie.findUnique({
+    const movie = await prisma.movie.findUnique({
       where: { tmdb_id: movieId.toString() }
     });
     if (!movie) return false
@@ -88,7 +87,6 @@ export async function removeFromWatchlist(clerkUserId: string, movieId: string) 
 
     if (!movie) throw new Error('Movie not found');
 
-    // Remove only the user's association
     await prisma.usersOnMovies.deleteMany({
       where: {
         userId: userId,
@@ -96,12 +94,10 @@ export async function removeFromWatchlist(clerkUserId: string, movieId: string) 
       }
     });
 
-    // Check if the movie is still linked to other users
     const remainingLinks = await prisma.usersOnMovies.count({
       where: { movieId: movie.id }
     });
 
-    // Delete the movie only if no other users are linked
     if (remainingLinks === 0) {
       await prisma.movie.delete({
         where: { id: movie.id }
@@ -124,7 +120,7 @@ export async function getMoviesFromWatchList(clerkUserId: string) {
 
     const movies = await prisma.movie.findMany({
       where: {
-        users: {   // Correct relation field name (camelCase)
+        users: {  
           some: { userId: userId }
         }
       },

@@ -1,5 +1,4 @@
 "use client"
-import useEmblaCarousel from 'embla-carousel-react'
 import Fade from 'embla-carousel-fade'
 import Autoplay from 'embla-carousel-autoplay'
 import { Movie } from '../../../typings';
