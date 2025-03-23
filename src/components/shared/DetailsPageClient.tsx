@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/carousel";
 import { addToWatchlist, removeFromWatchlist } from '@/actions/movie.action';
 import { useState } from 'react'; 
+import { Toaster } from '../ui/toaster';
+import { useToast } from '@/hooks/use-toast';
 
 
 const resolveRatingColor = (rating: number) => {
@@ -32,8 +34,7 @@ type Props = {
 
 function DetailspageClient({ details, is_added, userId, credits, videos, media_type }: Props) {
   const [isAdded, setIsAdded] = useState<boolean>(is_added || false);
-
-
+  const {toast} = useToast()
   const handleWatchlistToggle = async () => {
     if (isAdded) {
       await removeFromWatchlist(userId, details.id.toString());
@@ -74,7 +75,13 @@ function DetailspageClient({ details, is_added, userId, credits, videos, media_t
               <p className='max-sm:text-sm max-[400px]:hidden'>User Score</p>
             </div>
             <Button 
-              onClick={handleWatchlistToggle}
+              onClick={
+                !userId?() => {
+                toast({
+                  variant: "destructive",
+                  title: "Looks like you are not authenticated .",
+                })
+              }:handleWatchlistToggle}
               className={`text-md max-sm:text-xs ${isAdded ? 'bg-[#10B981] hover:bg-[#10b98183]' : 'inherit'} text-white`} 
               variant={'outline'}
             >
