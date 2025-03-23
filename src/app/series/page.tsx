@@ -1,36 +1,32 @@
-import Filters from "@/components/Filters"
-import MovieCard from "@/components/MovieCard"
-import PaginationComponent from "@/components/Pagination"
-import {  getDiscover } from "@/lib/getMovies"
+import Filters from "@/components/Filters";
+import MovieCard from "@/components/MovieCard";
+import PaginationComponent from "@/components/Pagination";
+import { getDiscover } from "@/lib/getMovies";
 
 async function Tvpage(props: {
-  searchParams:{
-    page: number,
-    with_genres: string,
-    sort_by:string,
-    primary_release_year:number,
-    
-  }
+  searchParams: {
+    page: number;
+    with_genres: string;
+    sort_by: string;
+    primary_release_year: number;
+  };
 }) {
-  const {page} =await props.searchParams
-  const {with_genres} =await props.searchParams
-  const {sort_by} =await props.searchParams
-  const {primary_release_year} =await props.searchParams
+  const { page, with_genres, sort_by, primary_release_year } = await props.searchParams;
   const currentPage = Number(page) || 1;
-  const series = await getDiscover('tv', currentPage,with_genres,sort_by,primary_release_year)
+  const series = await getDiscover("tv", currentPage, with_genres, sort_by, primary_release_year);
+
   return (
     <div className="my-10">
-     <h2 className="text-2xl mb-4">Series</h2>
-     <Filters media_type='tv' primary_release_year={primary_release_year}/>
-     <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 max-[450px]:grid-cols-1 gap-4">
-       {series.map((seria)=>(
-         <MovieCard key={seria.id} item_type='tv'  movie={seria}/>
-       ))}
-     </div>
-     <PaginationComponent/>
-
+      <h2 className="text-2xl mb-4">Series</h2>
+      <Filters media_type="tv" primary_release_year={primary_release_year} />
+      <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 max-[450px]:grid-cols-1 gap-4">
+        {series.map((seria) => (
+          <MovieCard key={seria.id} item_type="tv" movie={seria} />
+        ))}
+      </div>
+      <PaginationComponent />
     </div>
-  )
+  );
 }
 
-export default Tvpage
+export default Tvpage;

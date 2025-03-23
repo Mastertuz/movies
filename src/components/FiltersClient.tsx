@@ -62,7 +62,6 @@ function FiltersClient({ genresList: genres, sortBy }: FiltersClientProps) {
           ))}
         </SelectContent>
       </Select>
-
       <form className='max-w-20 min-w-20' onSubmit={handleYearSubmit}>
         <Input
           placeholder="Year"

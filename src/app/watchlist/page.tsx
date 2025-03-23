@@ -12,7 +12,7 @@ async function Watchlistpage() {
       <h2 className="text-2xl mb-4">Watchlist</h2>
       <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 max-[450px]:grid-cols-1 gap-4 ">
       {movies.length>0?movies.map((movie) => (
-          <MovieCard  key={movie.id} item_type="movie" movie={movie} isVertical />
+          <MovieCard  key={movie.id} item_type="movie" movie={movie} />
         )):(<div>No movies in your watchlist</div>)}
       </div>
 
