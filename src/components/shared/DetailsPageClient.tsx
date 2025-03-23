@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/carousel";
 import { addToWatchlist, removeFromWatchlist } from '@/actions/movie.action';
 import { useState } from 'react'; 
-import { Toaster } from '../ui/toaster';
 import { useToast } from '@/hooks/use-toast';
 
 
