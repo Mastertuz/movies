@@ -43,10 +43,10 @@ function FiltersClient({ genresList: genres, sortBy }: FiltersClientProps) {
   return (
     <div className="my-6 pb-2 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
       <Select onValueChange={(value) => handleSortByUpdate(value)} value={searchParams.get('sort_by') || ''}>
-        <SelectTrigger className="w-28">
+        <SelectTrigger className="w-28 ">
           <SelectValue placeholder="Sort by:" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent >
           {sortBy?.map((option) => (
             <SelectItem value={option.value} key={option.value}>{option.name}</SelectItem>
           ))}
