@@ -4,12 +4,12 @@ import PaginationComponent from "@/components/shared/Pagination";
 import { getDiscover } from "@/lib/getMovies";
 
 async function Tvpage(props: {
-  searchParams: {
+  searchParams: Promise<{
     page: number;
     with_genres: string;
     sort_by: string;
     primary_release_year: number;
-  };
+  }>;
 }) {
   const { page, with_genres, sort_by, primary_release_year } = await props.searchParams;
   const currentPage = Number(page) || 1;

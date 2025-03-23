@@ -4,12 +4,12 @@ import { getDiscover } from "@/lib/getMovies"
 import PaginationComponent from "@/components/shared/Pagination"
 import Filters from "@/components/shared/Filters"
 async function Moviespage(props: {
-  searchParams:{
+  searchParams:Promise<{
     page: number,
     with_genres: string,
     sort_by:string,
     primary_release_year:number,
-  }
+  }>
 }) {
   const {page} =await props.searchParams
   const {sort_by} =await props.searchParams

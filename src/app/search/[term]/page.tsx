@@ -3,9 +3,9 @@ import { getSearchedResults } from "@/lib/getMovies"
 import { notFound } from "next/navigation"
 
 type Props = {
-  params: {
+  params: Promise<{
     term: string
-  }
+  }>
 }
 
 async function Searchpage({  params }: Props) {
