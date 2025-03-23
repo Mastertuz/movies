@@ -8,7 +8,7 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
     role="navigation"
     aria-label="pagination"
-    className={cn("dark mx-auto flex w-full justify-start max-sm:justify-center", className)}
+    className={cn("mx-auto flex w-full justify-start max-sm:justify-center", className)}
     {...props}
   />
 )
