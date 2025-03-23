@@ -1,6 +1,6 @@
 'use server'
 import { addToWatchlist, getMoviesFromWatchList } from "@/actions/movie.action"
-import MovieCard from "@/components/MovieCard"
+import MovieCard from "@/components/shared/MovieCard"
 import { auth } from "@clerk/nextjs/server"
 
 async function Watchlistpage() {

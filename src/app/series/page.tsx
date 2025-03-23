@@ -1,6 +1,6 @@
-import Filters from "@/components/Filters";
-import MovieCard from "@/components/MovieCard";
-import PaginationComponent from "@/components/Pagination";
+import Filters from "@/components/shared/Filters";
+import MovieCard from "@/components/shared/MovieCard";
+import PaginationComponent from "@/components/shared/Pagination";
 import { getDiscover } from "@/lib/getMovies";
 
 async function Tvpage(props: {

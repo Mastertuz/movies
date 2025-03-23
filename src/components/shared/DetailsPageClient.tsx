@@ -1,9 +1,9 @@
 "use client";
 import getImagePath from '@/lib/getImagePath';
 import Image from 'next/image';
-import { Credits, Details, Video, Videos } from '../../typings';
+import { Credits, Details, Video, Videos } from '../../../typings';
 import CircularProgress from './CircleProgress';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { PlusIcon, CheckIcon } from 'lucide-react';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import {
@@ -37,7 +37,6 @@ type Props = {
 function DetailspageClient({ details, is_added, userId, credits, videos, media_type }: Props) {
   const [isAdded, setIsAdded] = useState<boolean>(is_added || false);
 
-  if (!userId) return;
 
   const handleWatchlistToggle = async () => {
     if (isAdded) {

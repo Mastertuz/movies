@@ -1,4 +1,4 @@
-import DetailspageClient from "@/components/DetailsPageClient";
+import DetailspageClient from "@/components/shared/DetailsPageClient";
 import { GetCredits, getDetails, getVideos } from "@/lib/getMovies";
 import { Credits, Details } from "../../../../typings";
 import { isInWatchList } from "@/actions/movie.action";
@@ -19,12 +19,11 @@ export default async function Detailspage({ params }: Params) {
   const credits: Credits = await GetCredits(media_type, id);
 
   const user = await currentUser();
-  if (!user) return;
-  const isAdded = await isInWatchList(user.id, details.id.toString());
+  const isAdded = user ? await isInWatchList(user.id, details.id.toString()) : false;
 
   return (
     <DetailspageClient
-      userId={user.id}
+      userId={user?.id||''}
       media_type={media_type}
       is_added={isAdded}
       videos={videos}

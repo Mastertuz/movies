@@ -1,5 +1,5 @@
 import { getGenres } from "@/lib/getMovies";
-import { Genre } from "../../typings";
+import { Genre } from "../../../typings";
 import FiltersClient from "./FiltersClient";
 
 export default async function Filters(props: {

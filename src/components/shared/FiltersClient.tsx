@@ -1,9 +1,9 @@
 'use client'
 import { useState } from 'react';
-import { Genre } from "../../typings";
+import { Genre } from "../../../typings";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Input } from "./ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue,SelectLabel,SelectGroup } from './ui/select';
+import { Input } from "../ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue,SelectLabel,SelectGroup } from '../ui/select';
 
 interface FiltersClientProps {
   genresList: Genre[];

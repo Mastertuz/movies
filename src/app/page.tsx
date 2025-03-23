@@ -1,5 +1,5 @@
-import MovieCarousel from "@/components/MovieCarousel";
-import MovieSliderWrapper from "@/components/MovieSliderWrapper";
+import MovieCarousel from "@/components/shared/MovieCarousel";
+import MovieSliderWrapper from "@/components/shared/MovieSliderWrapper";
 import { getTopRated, getTrending, getUpcoming } from "@/lib/getMovies";
 export default async function Home() {
   const trending= await getTrending()

@@ -1,6 +1,6 @@
 'use client'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
-import { Movie } from "../../typings"
+import { Movie } from "../../../typings"
 import MovieCard from "./MovieCard"
 
 import {

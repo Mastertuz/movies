@@ -5,7 +5,7 @@ import SearchInput from "./SearchInput";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { User } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "./ui/select";
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "../ui/select";
 import { useState } from "react";
 
 function Header() {
@@ -90,8 +90,9 @@ function Header() {
         </div>
         <SearchInput />
         <SignedOut>
-          <SignInButton />
-          <User />
+          <SignInButton >
+          <User  className="cursor-pointer"/>
+          </SignInButton>
         </SignedOut>
         <SignedIn>
           <UserButton />

@@ -1,8 +1,8 @@
-import MovieCard from "@/components/MovieCard"
+import MovieCard from "@/components/shared/MovieCard"
 import { getDiscover } from "@/lib/getMovies"
 
-import PaginationComponent from "@/components/Pagination"
-import Filters from "@/components/Filters"
+import PaginationComponent from "@/components/shared/Pagination"
+import Filters from "@/components/shared/Filters"
 async function Moviespage(props: {
   searchParams:{
     page: number,

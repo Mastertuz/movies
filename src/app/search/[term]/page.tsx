@@ -1,4 +1,4 @@
-import MovieCard from "@/components/MovieCard"
+import MovieCard from "@/components/shared/MovieCard"
 import { getSearchedResults } from "@/lib/getMovies"
 import { notFound } from "next/navigation"
 
