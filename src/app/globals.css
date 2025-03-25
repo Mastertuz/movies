@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media(hover:none){
-  *:hover {
-    background-color: transparent;
-  }
-}
+
 
 ::-webkit-scrollbar {
   width: 4px;
