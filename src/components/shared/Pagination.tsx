@@ -8,12 +8,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname, useSearchParams } from "next/navigation";
-
 function PaginationComponent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
-
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
@@ -25,57 +23,42 @@ function PaginationComponent() {
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={createPageURL(currentPage > 1 ? currentPage - 1 : currentPage)}
-            className="hover:bg-gray-200 active:bg-transparent"
+            href={createPageURL(
+              currentPage > 1 ? currentPage - 1 : currentPage
+            )}
           />
         </PaginationItem>
 
         <PaginationItem>
           {currentPage > 1 && (
-            <PaginationLink
-              href={createPageURL(currentPage - 1)}
-              className="hover:bg-gray-200 active:bg-transparent"
-            >
+            <PaginationLink href={createPageURL(currentPage - 1)}>
               {currentPage - 1}
             </PaginationLink>
           )}
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink
-            href={createPageURL(currentPage)}
-            isActive
-            className="hover:bg-gray-200 active:bg-transparent"
-          >
+          <PaginationLink href={createPageURL(currentPage)} isActive>
             {currentPage}
           </PaginationLink>
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink
-            href={createPageURL(currentPage + 1)}
-            className="hover:bg-gray-200 active:bg-transparent"
-          >
+          <PaginationLink href={createPageURL(currentPage + 1)}>
             {currentPage + 1}
           </PaginationLink>
         </PaginationItem>
 
-        {currentPage === 1 && (
+        {currentPage == 1 && (
           <PaginationItem>
-            <PaginationLink
-              href={createPageURL(currentPage + 2)}
-              className="hover:bg-gray-200 active:bg-transparent"
-            >
+            <PaginationLink href={createPageURL(currentPage + 2)}>
               {currentPage + 2}
             </PaginationLink>
           </PaginationItem>
         )}
 
         <PaginationItem>
-          <PaginationNext
-            href={createPageURL(currentPage + 1)}
-            className="hover:bg-gray-200 active:bg-transparent"
-          />
+          <PaginationNext href={createPageURL(currentPage + 1)} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
