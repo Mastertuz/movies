@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Добавляем активное состояние при касании */
+@media (hover: none) {
+  .pagination-link:active {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+}
 
 
 ::-webkit-scrollbar {
