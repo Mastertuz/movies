@@ -104,7 +104,6 @@ export async function removeFromWatchlist(clerkUserId: string, movieId: string) 
       });
     }
 
-    console.log('Movie removed from watchlist:', movieId);
     revalidatePath('/');
   } catch (error) {
     console.log('Error removing movie from watchlist:', error);
